@@ -1,0 +1,137 @@
+ion-content {
+    --overflow: hidden; //avoid scroll
+  }
+  
+  ion-grid {
+    color: var(--ion-color-dark);
+    padding: 0px;
+  }
+  
+  ion-col {
+    padding: 0px !important;
+  }
+  
+  #head {
+    p {
+      font-size: 14px;
+      color: #9eb0c2;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+  
+    h2 {
+      margin: 0px;
+      line-height: 24px;
+      font-size: 20px;
+      padding-top: 5px;
+    }
+  }
+  
+  #statistics {
+    p {
+      font-size: 11px;
+      color: #819cb9;
+    }
+  
+    h2 {
+      font-size: 15px;
+      color: #6990ba;
+      padding-top: 0px !important;
+      margin-top: 0px !important;
+    }
+  }
+  
+  #div-image {
+    background-image: url("/src/assets/img/exterior.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    margin-top: 25px;
+    margin-left: 24px;
+    margin-right: 24px;
+    height: 60%;
+    border-radius: 30px;
+  }
+  
+  #weather {
+    padding-top: 30px;
+    --background: transparent;
+    p {
+      font-size: 11px;
+      color: #819cb9;
+    }
+  
+    h2 {
+      font-size: 15px;
+      color: #6990ba;
+    }
+  
+    ion-label {
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+  }
+  
+  ion-thumbnail {
+    margin-left: 10px;
+  }
+  
+  #tabs {
+    p {
+      color: #6990ba;
+    }
+  }
+  
+  .scrolling-wrapper {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    height: 65%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    
+    .card {
+      flex: 0 0 auto;
+      border-radius: 40px;
+      position: relative;
+      height: 100%;
+      
+      
+    }
+    img {
+      width: 155px;
+      padding: 15px;
+      border-radius: 30px;
+      background-color: brown;
+    }
+    .image-container {
+      border-radius: 40px;
+      background-size: cover;
+      background-position: center;
+      min-height: 100%;
+      min-width: 210px;
+      margin-left: 20px;
+      background-color: #819cb9;
+    }
+    .titles {
+      position: absolute;
+      bottom: 0;
+      color: black;
+      margin-left: 20px;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+      padding-top: 5px;
+      padding-bottom: 25px;
+      font-weight: bold;
+    }
+    .temperature {
+      font-size: 14px;
+    }
+    h2 {
+      color: white;
+      font-size: 1em;
+    }
+  }
+

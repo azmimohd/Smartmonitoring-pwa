@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">smartMonitoring</string>
+    <string name="title_activity_main">smartMonitoring</string>
+    <string name="package_name">com.mazmitech.monitoring</string>
+    <string name="custom_url_scheme">com.mazmitech.monitoring</string>
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "703973949485",
+    "firebase_url": "https://fyp-monitoring-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fyp-monitoring",
+    "storage_bucket": "fyp-monitoring.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703973949485:android:f1d4f2f0473bf6c716b8a4",
+        "android_client_info": {
+          "package_name": "com.mazmitech.monitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703973949485-hd8r13su5n31qfskq0r0pgcucq124hhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbQ4daX4lwbxKQY4v2e-xaNdr1w97_r5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703973949485-hd8r13su5n31qfskq0r0pgcucq124hhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

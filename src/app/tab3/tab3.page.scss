@@ -1,0 +1,64 @@
+ion-header {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-image: url("/assets/img/solar2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom-left-radius: 80px;
+  background-position: medium;
+
+  ion-title {
+    --color: white;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  ion-toolbar {
+    --background: transparent;
+  }
+
+  ion-icon {
+    color: white;
+  }
+
+  ion-back-button {
+    --color: white;
+    --icon-font-size: 30px;
+  }
+}
+
+.power-chart {
+  border: none;
+  box-shadow: none;
+}
+
+.chart-lines {
+  background-image: url("/assets/img/socket.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.panel {
+  background-color: white !important;
+  border-color: #d0e2f2;
+  border-style: solid;
+  border-radius: 30px;
+  border-width: 1px;
+  padding: 7px !important;
+  padding-left: 16px !important;
+
+  p {
+    font-size: 14px;
+    color: #9eb0c2;
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+
+  h2 {
+    margin: 0px;
+    line-height: 24px;
+    font-size: 20px;
+    padding-top: 5px;
+    margin-bottom: 7px;
+  }
+}

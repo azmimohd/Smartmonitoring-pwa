@@ -1,0 +1,224 @@
+<ion-content fullscreen>
+  <ion-grid style="height: 100%; background: white !important; display: flex; flex-flow: column;">
+
+    <!--HEADER-->
+    <ion-row id="head" style="height: 14%; background-color: white; ">
+      <ion-col style="text-align: left; background-color: white; padding-left: 24px !important; background: white;"
+        class="ion-align-self-center" size="8">
+        <p>Monitoring System</p>
+        <p>{{day}}</p>
+        <div *ngIf="auth.user | async as user">
+          <p>Welcome {{ user.email }}</p>
+        </div>
+        
+      </ion-col>
+      <ion-col style="border-bottom-right-radius: 80px; text-align: center;" class="ion-align-self-center" size="4">
+    
+      </ion-col>
+    </ion-row>
+
+    <!--BODY-->
+    <ion-row style="height: 90%;">
+
+      <!--LEFT COL-->
+      <ion-col size="8"
+        style="background: linear-gradient(var(--ion-color-softlight), white) !important;  border-top-left-radius: 80px;">
+        <ion-grid style="background: transparent !important; height: 100%; display: flex; flex-flow: column;">
+          <ion-row style="flex-grow: 1; background: transparent;">
+            <ion-col class="ion-text-center" style="background: transparent; ">
+              <ion-item id="weather" lines="none">
+                <ion-thumbnail slot="start">
+                  <img width="24px" src="/assets/img/sun.svg">
+                </ion-thumbnail>
+                <ion-label>
+                  <p style="font-size: 12px; margin-top: 0px;">Air Quality</p>
+                  <h2 style="font-size: 14px;"></h2>
+                  <h2 style="font-size: 14px;">Condition :{{ (airsensor | async)?.gred }}</h2>
+                  <h2 style="font-size: 14px;">Realtime : {{ (monitoring | async)?.realtime }}</h2>
+                </ion-label>
+              </ion-item>
+              <div class="scrolling-wrapper">
+                <div class="card">
+                  <div class="image-container">
+
+                  <div class="titles">               
+                                 
+                    <div class="temperature" class="ion-text-right">
+                   
+                     <h2 > Controller 1 : {{ (relayData | async)?.relay1 }} </h2>
+                     <h2>  Controller 2 : {{ (relayData | async)?.relay2 }} </h2>
+                     <h2>  Controller 3 : {{ (relayData | async)?.relay3 }} </h2>
+                     <h2>  Controller 4 : {{ (relayData | async)?.relay4 }} </h2>
+                    
+                    </div>
+                   
+
+                  </div> 
+
+
+                
+                </div>
+                </div>
+
+                <div class="card" >
+                  <div class="image-container">
+                  <div class="titles">
+                    
+                    <div class="temperature" class="ion-text-left">
+                    <h2>Air Quality</h2>
+                     <h2> {{ (airsensor| async)?.rawvalue }} Ppm </h2>
+                     <h2>Notification {{ (gsmStatus | async)?.gsm }}</h2>
+
+                   
+                    </div>
+
+                  </div>
+                  
+                </div>
+
+                </div>
+
+                <div class="card" >
+                  
+                  <div class="image-container">
+                  <div class="titles">
+
+                    <div class="temperature" class="ion-text-left">
+                      <h2>Temperature</h2>
+                      <h2>{{ (tempsensor | async)?.temp }}ºC</h2>
+                      <h2>Notification {{ (gsmStatus | async)?.gsm }}</h2>
+                      <h2> Min : {{ (status| async)?.tmin }}ºC Max : {{ (status |async)?.tmax }}ºC</h2>
+                    </div>
+
+                  </div>
+                  
+                </div>
+
+                </div>
+
+                <div class="card" >
+                  <div class="image-container">
+                  <div class="titles">
+                    
+                    <div class="temperature" class="ion-text-left">
+                      <h2>Humidity</h2>
+                      <h2>{{ (tempsensor | async)?.humi }}%</h2>
+                      <h2>Notification {{ (gsmStatus | async)?.gsm }}</h2>
+                      <h2> Min : {{ (status| async)?.hmin }}% Max : {{ (status |async)?.hmax }}%</h2>
+                    </div>
+
+                  </div>
+                  
+                </div>
+
+                </div>
+
+                <div class="card">
+                  <div class="image-container">
+
+                  <div class="titles">               
+                                 
+                    <div class="temperature" class="ion-text-right">
+                       <ion-badge>C1 {{ (r1Status | async)?.status }} | C2 {{ (r2Status | async)?.status }}  </ion-badge>
+                       <ion-badge>C3 {{ (r3Status | async)?.status }} | C4 {{ (r4Status | async)?.status }}  </ion-badge>
+                      <h2 style="font-size: 12px">  Controller1 From {{ (r1on | async)?.hour }}:{{ (r1on | async)?.minute }} to {{ (r1off | async)?.hour }}:{{ (r1off | async)?.minute }}</h2>
+                      <h2 style="font-size: 12px">  Controller3 From {{ (r2on | async)?.hour }}:{{ (r2on | async)?.minute }} to {{ (r2off | async)?.hour }}:{{ (r2off | async)?.minute }}</h2>                 
+                      <h2 style="font-size: 12px">  Controller3 From {{ (r3on | async)?.hour }}:{{ (r3on | async)?.minute }} to {{ (r3off | async)?.hour }}:{{ (r3off | async)?.minute }}</h2>
+                      <h2 style="font-size: 12px">  Controller4 From {{ (r4on | async)?.hour }}:{{ (r4on | async)?.minute }} to {{ (r4off | async)?.hour }}:{{ (r4off | async)?.minute }}</h2>
+                      
+                    </div>
+                   
+
+                  </div> 
+
+
+                
+                </div>
+                </div>
+
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row style="min-height: 25%;" routerLink="/chart" routerDirection="root">
+            <ion-col class="ion-text-center"
+              style="border-top-left-radius: 80px;  background-image: linear-gradient(to right, #EBF4FD , white);">
+              <ion-grid id="statistics" style="padding-top: 20px; height: 100%;">
+                <ion-row style="height: 50%;">
+                  <ion-col class="ion-align-self-center">
+                    <p>Temperature</p>
+                    <h2>{{ (tempsensor | async)?.temp }}ºC</h2>
+                  </ion-col>
+                  <ion-col class="ion-align-self-center">
+                    <p>Humidity</p>
+                    <h2>{{ (tempsensor | async)?.humi }}%</h2>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="height: 50%;">
+                  <ion-col class="ion-align-self-center">
+                    <p>Weekly Prices</p>
+                    <h2>RM {{ ( weekprices| async)?.week }}</h2>
+                  </ion-col>
+                  <ion-col class="ion-align-self-center">
+                    <p>Weekly Total Usage</p>
+                    <h2>{{ (dayWatt | async)?.week }} Kwh</h2>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+      </ion-col>
+
+
+      <!--RIGHT COL-->
+      <ion-col id="tabs" size="4" style="background-color: #E8F4FF;">
+        <ion-grid style="background-color: #E8F4FF; height: 100%;">
+          <ion-row style="height: 20%;" >
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;"
+             >
+              
+              <p>Voltage</p>
+              <p>{{ (powersensor | async)?.voltage }} V</p>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 20%;" >
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;"
+              >
+              <p>Frequency</p>
+              <p>{{ (powersensor | async)?.frequency }} Hz</p>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 20%;" >
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;"
+              >
+              <p>Current</p>
+              <p>{{ (powersensor | async)?.current }} A</p>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 20%;" >
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;"
+              >
+              <p>Power</p>
+              <p>{{ (powersensor | async)?.power }} W</p>
+            </ion-col>
+          </ion-row>
+          
+          <ion-row style="height: 20%;">
+           
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;">
+              <ion-toggle  (click)="logIn()"></ion-toggle>
+            </ion-col>
+            <ion-col class="ion-align-self-center ion-text-center" style="background-color: #E8F4FF;">
+              <ion-toggle  *ngIf="auth.user | async as user" (click)="logOut()"></ion-toggle>
+              
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "smartMonitoring",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,11 @@
+<ion-content>
+<ion-item>
+ 
+  <ion-button (click)="setNoti()">press me</ion-button>
+
+  <ion-textarea class="showtoken">
+    {{ (usertoken | async)?.token }}
+  </ion-textarea>
+</ion-item>
+
+</ion-content>

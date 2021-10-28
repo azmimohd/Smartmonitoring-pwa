@@ -1,0 +1,87 @@
+<ion-header no-border class="header-dark">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" icon="arrow-round-back" mode="md" color="softlight"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Power Usage RM {{ (totalPrice | async)?.week }}</ion-title>
+    
+    <ion-buttons slot="start" >
+      <ion-button href="/tabs/tab3">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <!--chart in a ion-card element-->
+    <ion-card class="power-chart ion-no-margin ion-no-padding">
+      <ion-card-content>
+        <canvas #barChart></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p >Total Power Usage This Week is {{ (totalwatt | async)?.week }}Kwh</p>
+          <div>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p >Current Usage Price RM {{ (totalPrice | async)?.week }}</p>
+          <div>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p style="margin-bottom: 0px !important;">Power Usage For {{dayToday}}</p>
+          <ion-select [(ngModel)]="dayToday" > 
+            <ion-select-option Value="Sunday">Sunday</ion-select-option>
+            <ion-select-option Value="Monday">Monday</ion-select-option>
+            <ion-select-option Value="Tuesday">Tuesday</ion-select-option>
+            <ion-select-option Value="Wednesday">Wednesday</ion-select-option>
+            <ion-select-option Value="Thursday">Thursday</ion-select-option>
+            <ion-select-option Value="Friday">Friday</ion-select-option>
+            <ion-select-option Value="Saturday">Saturday</ion-select-option>
+          </ion-select>
+          <ion-button (click)="getWatt()">Get {{dayToday}} usage</ion-button>
+          <div>
+            <canvas #linesChart2></canvas>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row> 
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p >Your usage is RM {{ totalprices }}</p>
+       
+         
+          <ion-row>
+            <ion-item>
+            <ion-input [(ngModel)]="powerIn" placeholder="Enter Watt Usage" type="number"></ion-input>
+          </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-button (click)="powercalculate()">Calculate</ion-button>
+          </ion-row>
+        
+   
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

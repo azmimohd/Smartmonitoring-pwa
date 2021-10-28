@@ -1,0 +1,42 @@
+<ion-content class="form-content ion-padding">
+  <ion-grid style="height: 100%">
+    <ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%; flex-direction: column">
+      <img src="../assets/img/register.svg">
+      <p class="ion-text-center ion-padding-bottom">Please enter your data</p>
+
+      <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+
+        <ion-item lines="none">
+          <ion-input type="text" formControlName="email" placeholder="Your Email"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message"
+              *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none">
+          <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message"
+              *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="ion-text-center">
+          <ion-button class="register-button" type="submit" [disabled]="!validations_form.valid">Register </ion-button>
+          <p class="go-to-login">Already have an account? <a href="/user-sign-in">Try to Log In.</a> </p>
+        </div>
+
+      </form>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

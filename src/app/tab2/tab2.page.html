@@ -1,0 +1,183 @@
+<ion-header no-border class="header-dark">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" icon="arrow-round-back" mode="md" color="#ffffff"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Manual Control</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid style="height: 100%; background: white !important; display: flex; flex-flow: column;">
+    <!--DEVICES-->
+    <ion-row id="footer">
+      <ion-col>
+        <!--PANELS-->
+        <ion-grid style="background: transparent !important; height: 100%; display: flex; flex-flow: column;">
+          <ion-row>
+            <ion-col [ngClass]="{'panel-on': mode1,'panel-off': !mode1}" margin>
+              <ion-item no-padding lines="none">
+                <ion-icon color="#6990BA" no-margin slot="start" src="/assets/img/light.svg"></ion-icon>
+                <ion-toggle [(ngModel)]="mode1" (click)="controller1()" slot="end" mode="md"></ion-toggle>
+              </ion-item>
+              <p>Controller 1</p>
+              <h2>{{mode1?'OFF':'ON'}}</h2>
+            </ion-col>
+            <ion-col [ngClass]="{'panel-on': mode2,'panel-off': !mode2}" margin>
+              <ion-item no-padding lines="none">
+                <ion-icon color="#6990BA" no-margin slot="start" src="/assets/img/light.svg"></ion-icon>
+                <ion-toggle [(ngModel)]="mode2" (click)="controller2()" slot="end" mode="md"></ion-toggle>
+              </ion-item>
+              <p>Controller 2</p>
+              <h2>{{mode2?'OFF':'ON'}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col [ngClass]="{'panel-on': mode3,'panel-off': !mode3}" margin>
+              <ion-item no-padding lines="none">
+                <ion-icon color="#6990BA" no-margin slot="start" src="/assets/img/light.svg"></ion-icon>
+                <ion-toggle [(ngModel)]="mode3" (click)="controller3()" slot="end" mode="md"></ion-toggle>
+              </ion-item>
+              <p>Controller 3</p>
+              <h2>{{mode3?'OFF':'ON'}}</h2>
+            </ion-col>
+            <ion-col [ngClass]="{'panel-on': mode4,'panel-off': !mode4}" margin>
+              <ion-item no-padding lines="none">
+                <ion-icon color="#6990BA" no-margin slot="start" src="/assets/img/light.svg"></ion-icon>
+                <ion-toggle [(ngModel)]="mode4" (click)="controller4()" slot="end" mode="md"></ion-toggle>
+              </ion-item>
+              <p>Controller 4</p>
+              <h2>{{mode4?'OFF':'ON'}}</h2>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+           
+            <ion-col [ngClass]="{'panel-on': gsm,'panel-off': !gsm}" margin>
+              <ion-item no-padding lines="none">
+                <ion-icon color="#6990BA" no-margin slot="start" src="/assets/img/light.svg"></ion-icon>
+                <ion-toggle [(ngModel)]="gsm" (click)=gsmControl() slot="end" mode="md"></ion-toggle>
+              </ion-item>
+              <p style="margin-bottom: 0px !important;">Notification </p>
+              <ion-item no-margin no-padding lines="none">            
+                <h2 slot="start"  style="padding-top: 0px; margin-bottom: 0px !important;">
+
+                  {{gsm?'OFF':'ON'}}</h2>
+
+                  
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col class="panel" >
+                      <h1>Temperature</h1>
+                      <p>This will trigger the gsm and send message when minimum temperature is {{TempMin}}c and
+                        maximum temperature is {{TempMax}}c.
+                      </p>
+                    <ion-row>
+                      <p > Min</p>
+                      <ion-range [(ngModel)]="TempMin" no-padding no-margin margin-top min="0" max="80" step="1"
+                      value="24" snaps color="medium">
+                      <ion-icon slot="start" size="small" name="thermometer"></ion-icon>
+                      <ion-icon slot="end" name="thermometer"></ion-icon>
+                    </ion-range>
+                    <h1>{{TempMin}}°C</h1>
+                    </ion-row>
+
+
+                    <ion-row>
+                      <p > Max</p>
+                      <ion-range [(ngModel)]="TempMax" no-padding no-margin margin-top min="0" max="80" step="1"
+                      value="24" snaps color="medium">
+                      <ion-icon slot="start" size="small" name="thermometer"></ion-icon>
+                      <ion-icon slot="end" name="thermometer"></ion-icon>
+                    </ion-range>
+                    <h1>{{TempMax}}°C</h1>
+                    </ion-row>
+
+                    <p> Trigger :</p>
+                    <ion-select [(ngModel)]="RelaySelect" no-padding no-margin margin-top 
+                     snaps color="medium" value="Disable Trigger">
+                     <ion-select-option value="OFF"> Disable Trigger </ion-select-option>
+                     <ion-select-option value="ON"> Enable Trigger </ion-select-option>
+                   </ion-select>
+
+                    <ion-row>
+                      <ion-button (click)="tempSet()">set Min {{TempMin}}°C Max {{TempMax}}°C Trigger {{RelaySelect}}</ion-button>
+                    </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col class="panel" >
+                      <h1>Humidity</h1>
+                      <p>This will trigger the gsm and send message when minimum humidity is {{humiMin}}% and
+                        maximum humidity is {{humiMax}}%.
+                      </p>
+                      <ion-row>
+                        <p > Min</p>
+                        <ion-range [(ngModel)]="humiMin" no-padding no-margin margin-top min="0" max="100" step="1"
+                        value="24" snaps color="medium">
+                        <ion-icon slot="start" size="small" name="thermometer"></ion-icon>
+                        <ion-icon slot="end" name="thermometer"></ion-icon>
+                      </ion-range>
+                      <h1>{{humiMin}}</h1>
+                      </ion-row>
+                      <ion-row>
+                        <p > Max</p>
+                        <ion-range [(ngModel)]="humiMax" no-padding no-margin margin-top min="0" max="100" step="1"
+                        value="24" snaps color="medium">
+                        <ion-icon slot="start" size="small" name="thermometer"></ion-icon>
+                        <ion-icon slot="end" name="thermometer"></ion-icon>
+                      </ion-range>
+                      <h1>{{humiMax}}</h1>
+                      </ion-row>
+                      <ion-button (click)="humiSet()">set Min {{humiMin}}% Max {{humiMax}}%</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+              <ion-item>
+              
+
+
+
+
+                
+                <ion-grid>
+                  <ion-row>
+                   
+                    <ion-col [ngClass]="{'panel-on': mode5,'panel-off': !mode5}" margin>
+                      <ion-item no-padding lines="none">
+                        <ion-icon color="#6990BA" no-margin slot="start"  name="cloud-upload"></ion-icon>
+                        <ion-toggle [(ngModel)]="mode5" (click)="controller5()" slot="end" mode="md"></ion-toggle>
+                      </ion-item>
+                      <p>Realtime Data Monitoring </p>
+                      <h2>{{mode5?'OFF':'ON'}}</h2>
+                    </ion-col>
+                   
+                  </ion-row>
+                </ion-grid>
+            
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+
+
+        </ion-grid>
+        <!--PANELS-->
+       
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

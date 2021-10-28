@@ -1,0 +1,97 @@
+<ion-header no-border class="header-dark">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" icon="arrow-round-back" mode="md" color="softlight"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Daily Usage Chart</ion-title>
+    <ion-buttons slot="end">
+      <ion-button href="/power">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="panel" margin-start margin-end margin-bottom>
+        <p >Graph Showing Data For  {{dayToday}}</p>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--chart in grid element-->
+  <ion-grid>
+    <ion-row>
+      <ion-col class="panel" margin-start margin-end margin-bottom>
+        <p style="margin-bottom: 0px !important;" >Power Usage</p>
+   
+        <ion-button href="/power">
+          <ion-icon slot="icon-only" name="bar-chart-outline"></ion-icon></ion-button>
+          <div>
+          <canvas #linesChart2 ></canvas>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+    <!--chart in grid element-->
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p style="margin-bottom: 0px !important;">Temperature</p>
+          <div>
+            <canvas #linesChart3>
+              
+            </canvas>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+        <!--chart in grid element-->
+        <ion-grid>
+          <ion-row>
+            <ion-col class="panel" margin-start margin-end margin-bottom>
+              <p style="margin-bottom: 0px !important;">Humidity</p>
+              <div>
+                <canvas #linesChart4></canvas>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+            <!--chart in grid element-->
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p style="margin-bottom: 0px !important;">Air Quality</p>
+          <div>
+            <canvas #linesChart5></canvas>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="panel" margin-start margin-end margin-bottom>
+          <p >Air quality status is {{ (airsensor | async)?.gred}}</p>
+          <p> </p>
+          <div>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  <!--chart with image background-->
+  <div class="chart-lines">
+    <canvas #linesChart></canvas>
+  </div>
+
+</ion-content>

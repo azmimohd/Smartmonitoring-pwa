@@ -1,0 +1,35 @@
+<ion-content class="ion-padding" scrollY="false">
+  <ion-grid style="height: 100%">
+    <ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%; flex-direction: column">
+      <img src="../assets/img/home.svg">
+      <form class="form" [formGroup]="validations_form" (ngSubmit)="tryLogin(validations_form.value)">
+
+
+        <p class="ion-text-center ion-padding-bottom">Please enter your credentials</p>
+
+        <ion-item lines="none">
+          <ion-input type="text" formControlName="email" placeholder="Your Email"></ion-input>
+        </ion-item>
+        <div class="validation-errors" >
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message"
+              *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item lines="none">
+          <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <div class="validation-errors ion-text-right">
+          <p><a href="/forgot">Forgot Password </a></p>
+        </div>
+        <div class="ion-text-center">
+          <ion-button type="submit" [disabled]="!validations_form.valid" shape="round" color="primary">Login
+          </ion-button>
+          <p>No account yet? <a href="/create-usr">Create an account.</a> </p>
+        </div>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>
