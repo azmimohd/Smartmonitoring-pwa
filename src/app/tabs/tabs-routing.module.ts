@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../notify-page/notify-page.module').then(m => m.NotifyPagePageModule)
       },
       {
+        path: 'tab5',
+        loadChildren: () => import('../power/power.module').then(m => m.PowerPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
