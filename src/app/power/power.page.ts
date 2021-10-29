@@ -72,7 +72,7 @@ export class PowerPage implements OnInit {
             var usageMonday = parseInt(MondayUse)
             const TuesdayUse = Tuesday.payload.val().reduce((a, b) => a + b, 0)
             var usageTuesday = parseInt(TuesdayUse)
-            const WednesdayUse = Tuesday.payload.val().reduce((a, b) => a + b, 0)
+            const WednesdayUse = Wednesday.payload.val().reduce((a, b) => a + b, 0)
             var usageWednesday = parseInt(WednesdayUse)
             const ThursdayUse = Thursday.payload.val().reduce((a, b) => a + b, 0)
             var usageThursday = parseInt(ThursdayUse)
