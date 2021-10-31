@@ -24,10 +24,13 @@ export class PowerPage implements OnInit {
   public dayToday
   public powerIn
   public totalprices
+  public totalmonthprices
+  public hourUse
   constructor(public db:AngularFireDatabase) { 
     this.totalwatt = db.object('wattUsage/total').valueChanges();
     this.totalPrice = db.object('wattUsage/price').valueChanges();
   }
+  
   bars: any;
   colorArray: any;
   @ViewChild('barChart') barChart;
@@ -161,29 +164,34 @@ export class PowerPage implements OnInit {
 
 powercalculate(){
   if(this.powerIn <= 200){
-    const sum = this.powerIn * 21.8/100
+    const sum = (this.powerIn * 21.8/100)*this.hourUse
     this.totalprices = sum.toFixed(2)
+    this.totalmonthprices = (this.totalprices*30).toFixed(2)
     
   }else if(this.powerIn >= 201 && this.powerIn <= 300){
     const sum1 = this.powerIn-200
     const sum2 = sum1*33.4/100
-    const sum = sum2 + 43.60
+    const sum = (sum2 + 43.60)*this.hourUse
     this.totalprices = sum.toFixed(2)
+    this.totalmonthprices = (this.totalprices*30).toFixed(2)
   }else if (this.powerIn >= 301 && this.powerIn <= 600){
     const sum1 = this.powerIn-300
     const sum2 = sum1*51.6/100
-    const sum = sum2+ 33.40 + 43.60
+    const sum = (sum2+ 33.40 + 43.60)*this.hourUse
     this.totalprices = sum.toFixed(2)
+    this.totalmonthprices = (this.totalprices*30).toFixed(2)
   }else if (this.powerIn >= 601 && this.powerIn <= 900){
     const sum1 = this.powerIn -600
     const sum2 = sum1*54.6/100
-    const sum = sum1+43.60+33.40+154.80
+    const sum = (sum1+43.60+33.40+154.80)*this.hourUse
     this.totalprices = sum.toFixed(2)
+    this.totalmonthprices = (this.totalprices*30).toFixed(2)
   }else if(this.powerIn >= 901){
     const sum1 = this.powerIn -900
     const sum2 = sum1*57.1/100
-    const sum = sum2+43.60+33.40+154.80+163.80
+    const sum = (sum2+43.60+33.40+154.80+163.80)*this.hourUse
     this.totalprices = sum.toFixed(2)
+    this.totalmonthprices = (this.totalprices*30).toFixed(2)
   }
   
 }
@@ -238,4 +246,7 @@ getWatt(){
 
   })
 }
+
+
+
 }
