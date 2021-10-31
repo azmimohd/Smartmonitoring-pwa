@@ -66,18 +66,29 @@
     <ion-grid>
       <ion-row> 
         <ion-col class="panel" margin-start margin-end margin-bottom>
-          <p >Your usage is RM {{ totalprices }}</p>
+          <p>Power Calculator</p>
        
-         
+         <ion-row>
           <ion-row>
             <ion-item>
-            <ion-input [(ngModel)]="powerIn" placeholder="Enter Watt Usage" type="number"></ion-input>
+            <ion-input [(ngModel)]="powerIn" placeholder="Enter Kwh Usage" type="number"></ion-input>
+          </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+            <ion-input [(ngModel)]="hourUse" placeholder="Enter Usage Hour" type="number"></ion-input>
           </ion-item>
           </ion-row>
           <ion-row>
             <ion-button (click)="powercalculate()">Calculate</ion-button>
           </ion-row>
-        
+          <ion-row>
+              <ion-badge>Your usage is RM {{ totalprices }} for {{hourUse}} Hour</ion-badge>       
+          </ion-row>
+          <ion-row>
+            <ion-badge>Total for 1 Month is RM {{ totalmonthprices }}  </ion-badge>       
+        </ion-row>
+        </ion-row>
    
         </ion-col>
 
