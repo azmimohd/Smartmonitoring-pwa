@@ -135,7 +135,7 @@ export class PowerPage implements OnInit {
        }else if (total >= 601 && total <= 900){
         const sum1 = total -600
         const sum2 = sum1*54.6/100
-        const sum = sum1+43.60+33.40+154.80
+        const sum = sum2+43.60+33.40+154.80
         
         const itemRef = this.db.object('wattUsage/price');
         itemRef.update({ week : sum.toFixed(2)});
@@ -183,7 +183,7 @@ powercalculate(){
   }else if (this.powerIn >= 601 && this.powerIn <= 900){
     const sum1 = this.powerIn -600
     const sum2 = sum1*54.6/100
-    const sum = (sum1+43.60+33.40+154.80)*this.hourUse
+    const sum = (sum2+43.60+33.40+154.80)*this.hourUse
     this.totalprices = sum.toFixed(2)
     this.totalmonthprices = (this.totalprices*30).toFixed(2)
   }else if(this.powerIn >= 901){
