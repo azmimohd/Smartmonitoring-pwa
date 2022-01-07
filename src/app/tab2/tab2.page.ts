@@ -25,6 +25,7 @@ export class Tab2Page {
   public mode3: boolean = true;
   public mode4: boolean = true;
   public mode5: boolean = true;
+  public mode6: boolean = true;
   public gsm: boolean = true;
   public RelaySelect;
   
@@ -36,6 +37,7 @@ export class Tab2Page {
   public relay3Trig:boolean = false;
   public relay4Trig:boolean = false;
   public relay5Trig:boolean = true;
+  public flashTrig:boolean = true;
   public gsmTrig:boolean = false;
   
   public relayone : any;
@@ -111,6 +113,18 @@ export class Tab2Page {
         this.mode5 = true;
       }
     });
+
+
+    this.itemRef = this.db.object('espcam/flash');
+    this.itemRef.snapshotChanges().subscribe(action => {
+      this.relayone = action.payload.val()
+      console.log(this.relayone)
+      if(this.relayone == "ON"){
+        this.mode6 = false;
+      }else{
+        this.mode6 = true;
+      }
+    });
   
     this.itemRef = this.db.object('gsmSet/hmin');
     this.itemRef.snapshotChanges().subscribe(hmin => {
@@ -131,8 +145,27 @@ export class Tab2Page {
   }
 
 
-  initRelay(){
-    
+  takePhoto(){
+    const itemRef = this.db.object('espcam');
+    itemRef.update({ photo: "ON" }); 
+    this.showToast("System Taking Up the Photo Please Wait ") 
+  }
+
+  flashCtrl(){
+    console.log(this.relayone)
+    this.flashTrig = !this.flashTrig
+   if (this.flashTrig){
+     const itemRef = this.db.object('espcam');
+     itemRef.update({ flash: "ON" }); 
+     this.showToast("Camera Flash is Turning on")
+   }else {
+     const itemRef = this.db.object('espcam');
+     itemRef.update({ flash: "OFF" }); 
+     this.showToast("Camera Flash is Turning off")
+ 
+   }
+   console.log(this.relay1Trig);
+   console.log(); 
   }
 
   controller1(){
