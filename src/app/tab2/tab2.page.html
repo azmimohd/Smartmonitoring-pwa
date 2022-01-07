@@ -15,6 +15,32 @@
       <ion-col>
         <!--PANELS-->
         <ion-grid style="background: transparent !important; height: 100%; display: flex; flex-flow: column;">
+        
+          <ion-grid>
+            <ion-row>
+             
+              <ion-col [ngClass]="{'panel-on': mode6,'panel-off': !mode6}" margin>
+                <h1> Take Picture </h1>
+                <ion-item no-padding lines="none">
+                  <ion-icon color="#6990BA" no-margin slot="start"  name="cloud-upload"></ion-icon>
+                  <p>Flash Setting</p>
+                  <ion-toggle [(ngModel)]="mode6" (click)="flashCtrl()" slot="end" mode="md"></ion-toggle>
+                </ion-item>
+                <p> ESP Camera  </p>
+                <ion-col>
+                <ion-button (click)="takePhoto()" shape="round">Take Photo</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button href="https://t.me/smartpfbot" shape="round">Check Photo</ion-button>
+              </ion-col>
+                <h2>{{mode5?'OFF':'ON'}}</h2>
+              </ion-col>
+             
+            </ion-row>
+          </ion-grid>
+
+
+
           <ion-row>
             <ion-col [ngClass]="{'panel-on': mode1,'panel-off': !mode1}" margin>
               <ion-item no-padding lines="none">
