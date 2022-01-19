@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 import { timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import * as ChartAnnotation from 'chartjs-plugin-annotation';
 import { Chart } from 'chart.js';
 @Component({
   selector: 'app-tab3',
@@ -145,23 +144,6 @@ export class Tab3Page implements OnInit {
                 },
               }]
             }
-          },annotation: {
-            annotations: [
-              {
-                drawTime: 'afterDatasetsDraw',
-                id: 'hline',
-                type: 'line',
-                mode: 'horizontal',
-                scaleID: 'y-axis-0',
-                value: 300, // My value
-                borderColor: 'red',
-                borderWidth: 3,
-                label: {
-                   backgroundColor: 'red',
-                   enabled: true
-                }
-              }
-            ]
           }
 
 
