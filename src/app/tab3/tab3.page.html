@@ -4,11 +4,7 @@
       <ion-back-button defaultHref="home" icon="arrow-round-back" mode="md" color="softlight"></ion-back-button>
     </ion-buttons>
     <ion-title>Daily Usage Chart</ion-title>
-    <ion-buttons slot="end">
-      <ion-button href="/power">
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -17,6 +13,16 @@
     <ion-row>
       <ion-col class="panel" margin-start margin-end margin-bottom>
         <p >Graph Showing Data For  {{dayToday}}</p>
+        <ion-select [(ngModel)]="dayToday" > 
+          <ion-select-option Value="Sunday">Sunday</ion-select-option>
+          <ion-select-option Value="Monday">Monday</ion-select-option>
+          <ion-select-option Value="Tuesday">Tuesday</ion-select-option>
+          <ion-select-option Value="Wednesday">Wednesday</ion-select-option>
+          <ion-select-option Value="Thursday">Thursday</ion-select-option>
+          <ion-select-option Value="Friday">Friday</ion-select-option>
+          <ion-select-option Value="Saturday">Saturday</ion-select-option>
+        </ion-select>
+        <ion-button (click)="getWatt()">Get {{dayToday}} Graph</ion-button>
 
       </ion-col>
     </ion-row>
@@ -26,7 +32,8 @@
   <ion-grid>
     <ion-row>
       <ion-col class="panel" margin-start margin-end margin-bottom>
-        <p style="margin-bottom: 0px !important;" >Power Usage</p>
+        <p style="margin-bottom: 0px !important;" >Power Usage Watt</p>
+   
           <div>
           <canvas #linesChart2 ></canvas>
         </div>
@@ -39,7 +46,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="panel" margin-start margin-end margin-bottom>
-          <p style="margin-bottom: 0px !important;">Temperature</p>
+          <p style="margin-bottom: 0px !important;">Temperature C</p>
           <div>
             <canvas #linesChart3>
               
@@ -54,7 +61,7 @@
         <ion-grid>
           <ion-row>
             <ion-col class="panel" margin-start margin-end margin-bottom>
-              <p style="margin-bottom: 0px !important;">Humidity</p>
+              <p style="margin-bottom: 0px !important;">Humidity %</p>
               <div>
                 <canvas #linesChart4></canvas>
               </div>
@@ -66,7 +73,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="panel" margin-start margin-end margin-bottom>
-          <p style="margin-bottom: 0px !important;">Air Quality</p>
+          <p style="margin-bottom: 0px !important;">Air Quality PPM</p>
           <div>
             <canvas #linesChart5></canvas>
           </div>
@@ -74,21 +81,38 @@
       </ion-row>
     </ion-grid>
     <ion-grid>
-      <ion-row>
-        <ion-col class="panel" margin-start margin-end margin-bottom>
-          <p >Air quality status is {{ (airsensor | async)?.gred}}</p>
-          <p> </p>
-          <div>
-            
-          </div>
-        </ion-col>
-      </ion-row>
     </ion-grid>
 
 
   <!--chart with image background-->
   <div class="chart-lines">
-    <canvas #linesChart></canvas>
+    <ion-row>
+    <ion-row>
+    <ion-button (click)="graphReset()">Reset</ion-button>
+    
+  </ion-row>
+  <p> Day </p>
+  <ion-row>
+    <ion-select [(ngModel)]="resetSelect" > 
+      <ion-select-option Value="Sunday">Sunday</ion-select-option>
+      <ion-select-option Value="Monday">Monday</ion-select-option>
+      <ion-select-option Value="Tuesday">Tuesday</ion-select-option>
+      <ion-select-option Value="Wednesday">Wednesday</ion-select-option>
+      <ion-select-option Value="Thursday">Thursday</ion-select-option>
+      <ion-select-option Value="Friday">Friday</ion-select-option>
+      <ion-select-option Value="Saturday">Saturday</ion-select-option>
+    </ion-select>
+  </ion-row>
+  <p>Sensor</p>
+  <ion-row>
+    <ion-select [(ngModel)]="sensor" > 
+      <ion-select-option Value="Watt">Watt Data</ion-select-option>
+      <ion-select-option Value="Air">Air Data</ion-select-option>
+      <ion-select-option Value="Humi">Humidity Data</ion-select-option>
+      <ion-select-option Value="Temp">Temperature Data</ion-select-option>
+    </ion-select>
+  </ion-row>
+</ion-row>
   </div>
 
 </ion-content>
