@@ -13,6 +13,7 @@ import { AngularFireObject } from '@angular/fire/compat/database';
 
 
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -64,6 +65,7 @@ export class Tab1Page  implements OnInit{
 
   public relayone : any;
   public day:string
+
  
 
 
@@ -74,6 +76,7 @@ export class Tab1Page  implements OnInit{
     private route: Router,
     public auth: AngularFireAuth,
     public sensorread : sensorread,
+ 
   
    
     ) {
@@ -85,45 +88,67 @@ export class Tab1Page  implements OnInit{
       const WattvalDay = '/wattUsage/'+dayFormat  
       console.log(WattvalDay);
 
-      this.userData = db.object('user').valueChanges();
-      this.airsensor = db.object('airsensor').valueChanges();
-      this.envsensor = db.list('envsensor').valueChanges();
-      this.psensor = db.list('psensor').valueChanges();
-      this.tempsensor = db.object('envsensor').valueChanges();
-      this.powersensor = db.object('psensor').valueChanges();
-      this.gsmStatus =db.object('gsmSet').valueChanges();
-      this.relayData = db.object('relaymodule').valueChanges();
-      this.dayWatt = db.object('wattUsage/total').valueChanges();
-      this.monitoring = db.object('gsmSet').valueChanges();
-      this.status = db.object('gsmSet').valueChanges();
-      this.r1on = db.object('arlarm/relay1/on').valueChanges();
-      this.r1off = db.object('arlarm/relay1/off').valueChanges();
-      this.r2on = db.object('arlarm/relay2/on').valueChanges();
-      this.r2off = db.object('arlarm/relay2/off').valueChanges();
-      this.r3on = db.object('arlarm/relay3/on').valueChanges();
-      this.r3off = db.object('arlarm/relay3/off').valueChanges();
-      this.r4on = db.object('arlarm/relay4/on').valueChanges();
-      this.r4off = db.object('arlarm/relay4/off').valueChanges();
-
-      this.r1Status = db.object('arlarm/relay1').valueChanges();
-      this.r2Status = db.object('arlarm/relay2').valueChanges();
-      this.r3Status = db.object('arlarm/relay3').valueChanges();
-      this.r4Status = db.object('arlarm/relay4').valueChanges();
-
-      this.weekprices = db.object('wattUsage/price').valueChanges();
+  
 
 
+      this.auth.onAuthStateChanged(user => {
+        if (user) {
+          var userid = user.uid
+          console.log(user.uid)
+          
+
+          this.userData = db.object(userid+'/user').valueChanges();
+          this.airsensor = db.object(userid+'/airsensor').valueChanges();
+          this.envsensor = db.list(userid+'/envsensor').valueChanges();
+          this.psensor = db.list(userid+'/psensor').valueChanges();
+          this.tempsensor = db.object(userid+'/envsensor').valueChanges();
+          this.powersensor = db.object(userid+'/psensor').valueChanges();
+          this.gsmStatus =db.object(userid+'/gsmSet').valueChanges();
+          this.relayData = db.object(userid+'/relaymodule').valueChanges();
+          this.dayWatt = db.object(userid+'/wattUsage/total').valueChanges();
+          this.monitoring = db.object(userid+'/gsmSet').valueChanges();
+          this.status = db.object(userid+'/gsmSet').valueChanges();
+          this.r1on = db.object(userid+'/arlarm/relay1/on').valueChanges();
+          this.r1off = db.object(userid+'/arlarm/relay1/off').valueChanges();
+          this.r2on = db.object(userid+'/arlarm/relay2/on').valueChanges();
+          this.r2off = db.object(userid+'/arlarm/relay2/off').valueChanges();
+          this.r3on = db.object(userid+'/arlarm/relay3/on').valueChanges();
+          this.r3off = db.object(userid+'/arlarm/relay3/off').valueChanges();
+          this.r4on = db.object(userid+'/arlarm/relay4/on').valueChanges();
+          this.r4off = db.object(userid+'/arlarm/relay4/off').valueChanges();
+    
+          this.r1Status = db.object(userid+'/arlarm/relay1').valueChanges();
+          this.r2Status = db.object(userid+'/arlarm/relay2').valueChanges();
+          this.r3Status = db.object(userid+'/arlarm/relay3').valueChanges();
+          this.r4Status = db.object(userid+'/arlarm/relay4').valueChanges();
+    
+          this.weekprices = db.object(userid+'/wattUsage/price').valueChanges();
+        }
+        else {
+          
+        }
+  })
 
       }
 
      ngOnInit(){
+      this.auth.onAuthStateChanged(user => {
+        if (user) {
 
-      
+          const itemRef = this.db.object(user.uid+'/user');
+          itemRef.update({ ActiveUser: user.email });
+          // logged in or user exists
+        }
+        else {
+          // not logged in
+        }
+  })
+    
       }
 
     
 
-
+      
       
 
 
@@ -151,6 +176,11 @@ export class Tab1Page  implements OnInit{
 
 
 }
+
+
+
+
+
 
 
 
