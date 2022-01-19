@@ -303,8 +303,8 @@ export class Tab3Page implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    Chart.pluginService.register(ChartAnnotation);
+  ngOnInit(){
+
   }
 
 
