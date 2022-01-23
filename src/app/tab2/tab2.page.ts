@@ -436,7 +436,8 @@ tempSet(){
    
      const itemRef3 = this.db.object(user.uid+'/gsmSet');
      itemRef3.update({ trigArlarm1: this.RelaySelect });
-     this.showToast("Temperature is set Min: "+this.TempMin+"°C Max: "+this.TempMax+"°C Relay 1 Trigger is "+this.RelaySelect)
+     itemRef3.update({ trigArlarm2: this.RelaySelect });
+     this.showToast("Temperature is set Min: "+this.TempMin+"°C Max: "+this.TempMax+"°C Relay 1 and 2 reserve ")
     }
     else {
       this.showToast("Please Login First")
